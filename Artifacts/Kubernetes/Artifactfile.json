@@ -1,16 +1,24 @@
 {
-    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
-    "title": "Init Kubernetes Zalenium Cluster",
-    "publisher": "Akzo Nobel",
-    "description": "Init Kubernetes Zalenium Cluster",
-    "tags": [
-        "Docker",
-        "Linux",
+	"$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
+	"title": "Init Kubernetes Zalenium Cluster",
+	"publisher": "Akzo Nobel",
+	"description": "Init Kubernetes Zalenium Cluster",
+	"tags": [
+		"Docker",
+		"Linux",
 		"Kubernetes"
-    ],
-    "iconUri": "https://chocolatey.org/content/packageimages/kubernetes-node.1.11.3.png",
-    "targetOsType": "Linux",
-    "runCommand": {
-        "commandToExecute": "['sh InitKubernetesCluster.sh']"
-    }
+	],
+	"iconUri": "https://chocolatey.org/content/packageimages/kubernetes-node.1.11.3.png",
+	"targetOsType": "Linux",
+	"parameters": {
+		"linuxUser": {
+			"type": "string",
+			"displayName": "Linux user",
+			"allowEmpty": false,
+			"description": "The name of the linux user."
+		}
+	},
+	"runCommand": {
+		"commandToExecute": "[concat('sh InitKubernetesCluster.sh ', parameters('linuxUser'))]"
+	}
 }
