@@ -19,9 +19,12 @@ sudo swapoff -a
 #Init kubeadm --> Docker version could be to low in case of no upgrade of base image
 sudo kubeadm init --ignore-preflight-errors=SystemVerification
 
-runuser -l $LINUX_USER -c 'mkdir -p $HOME/.kube' //mkdir -p $HOME/.kube
-runuser -l $LINUX_USER -c 'sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config' 
-runuser -l $LINUX_USER -c 'sudo chown $(id -u):$(id -g) $HOME/.kube/config' 
+#user config
+#runuser -l $LINUX_USER -c 'mkdir -p $HOME/.kube' //mkdir -p $HOME/.kube
+#runuser -l $LINUX_USER -c 'sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config' 
+#runuser -l $LINUX_USER -c 'sudo chown $(id -u):$(id -g) $HOME/.kube/config' 
+
+sudo export KUBECONFIG=/etc/kubernetes/admin.conf
 
 #Deploy pod weave network
 sudo kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(sudo kubectl version | base64 | tr -d '\n')"
