@@ -19,10 +19,9 @@ sudo swapoff -a
 #Init kubeadm --> Docker version could be to low in case of no upgrade of base image
 sudo kubeadm init --ignore-preflight-errors=SystemVerification
 
-#user config
-#runuser -l $LINUX_USER -c 'mkdir -p $HOME/.kube' //mkdir -p $HOME/.kube
-#runuser -l $LINUX_USER -c 'sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config' 
-#runuser -l $LINUX_USER -c 'sudo chown $(id -u):$(id -g) $HOME/.kube/config' 
+mkdir -p /root/.kube
+cp -i /etc/kubernetes/admin.conf /root/.kube/config
+chown $(id -u):$(id -g) /root/.kube/config
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
